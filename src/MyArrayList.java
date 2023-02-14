@@ -1,19 +1,42 @@
-import java.util.ArrayList;
-import java.util.List;
+public class MyArrayList<E> {
+    private static final int DEFAULT_CAPACITY = 10;
 
-public class MyArrayList {
-    public static void main(String[] args) {
-        List<String> schoolmates = new ArrayList<String>();
-        schoolmates.add("Simon");
-        schoolmates.add("Pumba");
-        schoolmates.add("Krip Stepan");
-        System.out.println("schoolmates = " + schoolmates);
-        System.out.println("schoolmates.remove(2) = " + schoolmates.remove(2));
-        System.out.println("schoolmates.size() = " + schoolmates.size());
-        System.out.println("schoolmates.get(1) = " + schoolmates.get(1));
-        System.out.println(schoolmates);
-        schoolmates.clear();
-    System.out.println("schoolmates = " + schoolmates);;
+
+    public MyArrayList() {
+        Object[] arrayElements = new Object[DEFAULT_CAPACITY];
+        int size = 0;
     }
+
+    public void clear() {
+        Object[] arrayElements = new Object[DEFAULT_CAPACITY];
+        int size = 0;
+    }
+
+    private Object[] grow(int size) {
+        return grow(size + 1);
+    }
+
+    public int size() {
+        return this.size();
+    }
+
+    private void add(E e, Object[] array, int s) {
+        if (s < array.length) {
+            array[s] = e;
+            array = grow(size());
+        } else if (s == array.length) {
+            int i = 0;
+            array = new Object[array.length * 2];
+            for (Object d : array) {
+                i++;
+                array[i] = d;
+            }
+            array[s] = e;
+            array = grow(size());
+        }
+
+        System.out.println("array = " + array);
+    }
+
 
 }
