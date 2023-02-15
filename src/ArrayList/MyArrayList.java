@@ -1,11 +1,14 @@
 package ArrayList;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class MyArrayList<E> {
     private static final int DEFAULT_CAPACITY = 10;
     Object[] arrayElements;
     int size;
+    int index;
+
 
     public MyArrayList() {
         arrayElements = new Object[DEFAULT_CAPACITY];
@@ -17,14 +20,40 @@ public class MyArrayList<E> {
         size = 0;
     }
 
-
     public int size() {
         return size;
     }
 
     @Override
     public String toString() {
-        return Arrays.toString(arrayElements);
+        StringBuffer sb = new StringBuffer();
+        for(Object elements: arrayElements){
+            if(elements!= null){
+                sb.append(elements).append(",");
+            }
+        }
+        return sb.toString().substring(0,sb.length() - 1);
+    }
+
+
+    public E remove(int index) {
+        Objects.checkIndex(index, size);
+        if (index <= size) {
+            E e = (E) arrayElements[index];
+            System.arraycopy(arrayElements, index + 1, arrayElements, index, size - index - 1);
+            size--;
+            this.index = index;
+            return e;
+        } else {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+    }
+
+    public E get(int index) {
+        Objects.checkIndex(index, size);
+        E e = (E) arrayElements[index];
+        this.index = index;
+        return e;
     }
 
     public void add(E value) {
@@ -34,20 +63,10 @@ public class MyArrayList<E> {
             arrayElements = newArray;
 
         }
+
+
         arrayElements[size++] = value;
     }
-
-    public E remove(int index) {
-        if (index <= size) {
-            E e = (E) arrayElements[index];
-            System.arraycopy(arrayElements, index + 1, arrayElements, index, size - index - 1);
-            size--;
-            return e;
-        } else {
-            throw new ArrayIndexOutOfBoundsException();
-        }
-    }
-
     //    public E get(int index) {
 //        if (index <= size) {
 //            E e = (E) arrayElements[index];
@@ -57,8 +76,4 @@ public class MyArrayList<E> {
 //        }
 //    }
 //}
-    public E get(int index){
-E e = (E) arrayElements[index];
-return e;
-    }
 }
