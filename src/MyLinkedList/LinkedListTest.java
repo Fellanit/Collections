@@ -10,9 +10,10 @@ public class LinkedListTest {
         linkedTest.addLast("Bobojan");
         linkedTest.addFirst("Bobo father");
         System.out.println("linkedTest.size() = " + linkedTest.size());
-//        System.out.println("linkedTest.remove(1) = " + linkedTest.remove(1));
+        System.out.println("linkedTest.remove(2) = " + linkedTest.remove(2));
         System.out.println("linkedTest.size() = " + linkedTest.size());
         System.out.println("linkedTest.get(2) = " + linkedTest.get(2));
+        System.out.println("linkedTest = " + linkedTest);
         linkedTest.clear();
         System.out.println("linkedTest.size() = " + linkedTest.size());
 

@@ -1,6 +1,7 @@
 package MyLinkedList;
 
-import java.util.LinkedList;
+
+import java.util.Objects;
 
 public class MyLinkedList<E> {
     private Node<E> fstNode;
@@ -67,7 +68,17 @@ public class MyLinkedList<E> {
     }
 
 
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        Node<E> node = fstNode.nextElement;
+        while (node.nextElement != null) {
+            result.append(node.currentElement).append(",");
+            node = node.nextElement;
+        }
 
+        return result.toString().substring(0,result.length() - 1);
+    }
     public E get(int index) {
         if (index <= size) {
             Node<E> getingElement = fstNode.nextElement;
@@ -92,14 +103,23 @@ public class MyLinkedList<E> {
         size = 0;
     }
     public E remove(int index){
+        Objects.checkIndex(index,size);
         Node<E> removingElement = fstNode.nextElement;
         for (int i = 0; i < index; i++) {
-            removingElement = getNextElement(removingElement);
-//            to be continued
+            removingElement = removingElement.nextElement;
         }
-        removingElement = null;
-        lstNode = removingElement;
-        return lstNode.currentElement;
+        if(index == 0){
+            fstNode = removingElement.nextElement;
+            fstNode.prevElement = null;
+        }if(index == size){
+            lstNode = removingElement.prevElement;
+            lstNode.nextElement = null;
+        }else {
+            removingElement.prevElement.nextElement = removingElement.nextElement;
+            removingElement.nextElement.prevElement = removingElement.prevElement;
+        }
+        size--;
+         return removingElement.currentElement;
     }
 
 
