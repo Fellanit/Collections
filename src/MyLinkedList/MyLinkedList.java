@@ -11,6 +11,7 @@ public class MyLinkedList<E> {
     public MyLinkedList() {
         lstNode = new Node<E>(null, fstNode, null);
         fstNode = new Node<>(null, null, lstNode);
+        size = 0;
     }
 
     private class Node<E> {
@@ -53,7 +54,7 @@ public class MyLinkedList<E> {
 
     }
 
-    public void addLast(E e) {
+        public void addLast(E e) {
         Node<E> prev = lstNode;
         prev.setCurrentElement(e);
         lstNode = new Node<E>(null, prev, null);
