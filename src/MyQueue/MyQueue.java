@@ -58,7 +58,9 @@ public class MyQueue<E> {
         StringBuilder result = new StringBuilder();
         Node<E> node = fstNode.nextElement;
         while (node.nextElement != null) {
-            result.append(node.currentElement).append(",");
+            if (node.currentElement != null){
+                result.append(node.currentElement).append(",");
+            }
             node = node.nextElement;
         }
 
