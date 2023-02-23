@@ -1,6 +1,4 @@
-package MyLinkedList;
-
-import java.util.LinkedList;
+package Modul_9.MyLinkedList;
 
 public class LinkedListTest {
     public static void main(String[] args) {

@@ -1,8 +1,7 @@
-package MyStack;
+package Modul_9.MyStack;
 
 import java.util.Arrays;
 import java.util.Objects;
-import java.util.Stack;
 
 public class MyStack<E> {
     private static final int DEFAULT_CAPACITY = 10;

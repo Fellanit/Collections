@@ -1,6 +1,5 @@
-package ArrayList;
+package Modul_9.MyArrayList;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 public class MyArrayList<E> {

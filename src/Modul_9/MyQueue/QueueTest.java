@@ -1,4 +1,4 @@
-package MyQueue;
+package Modul_9.MyQueue;
 
 public class QueueTest {
 

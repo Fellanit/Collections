@@ -1,8 +1,5 @@
-package MyQueue;
+package Modul_9.MyQueue;
 
-
-import java.util.ArrayDeque;
-import java.util.Queue;
 
 public class MyQueue<E> {
     private Node<E> fstNode;

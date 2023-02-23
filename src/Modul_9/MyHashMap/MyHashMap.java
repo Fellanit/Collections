@@ -1,9 +1,6 @@
-package MyHashMap;
+package Modul_9.MyHashMap;
 
 import java.util.Arrays;
-import java.util.Objects;
-
-import static java.util.Objects.hash;
 
 public class MyHashMap<K, V> {
     private Node<K, V>[] HashMap;

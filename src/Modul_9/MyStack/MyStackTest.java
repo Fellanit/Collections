@@ -1,4 +1,4 @@
-package MyStack;
+package Modul_9.MyStack;
 
 public class MyStackTest {
     public static void main(String[] args) {
