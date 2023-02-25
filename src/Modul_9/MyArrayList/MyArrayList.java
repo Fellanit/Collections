@@ -6,16 +6,11 @@ public class MyArrayList<E> {
     private static final int DEFAULT_CAPACITY = 10;
     Object[] arrayElements;
     int size;
-    int index;
+
 
 
     public MyArrayList() {
         arrayElements = new Object[DEFAULT_CAPACITY];
-        size = 0;
-    }
-
-    public void clear() {
-        Object[] arrayElements = new Object[DEFAULT_CAPACITY];
         size = 0;
     }
 
@@ -41,7 +36,6 @@ public class MyArrayList<E> {
             E e = (E) arrayElements[index];
             System.arraycopy(arrayElements, index + 1, arrayElements, index, size - index - 1);
             size--;
-            this.index = index;
             return e;
         } else {
             throw new ArrayIndexOutOfBoundsException();
@@ -51,7 +45,6 @@ public class MyArrayList<E> {
     public E get(int index) {
         Objects.checkIndex(index, size);
         E e = (E) arrayElements[index];
-        this.index = index;
         return e;
     }
 
@@ -65,6 +58,12 @@ public class MyArrayList<E> {
 
 
         arrayElements[size++] = value;
+    }
+
+    public void clear() {
+        arrayElements = new  Object[DEFAULT_CAPACITY];
+        size = 0;
+
     }
     //    public E get(int index) {
 //        if (index <= size) {

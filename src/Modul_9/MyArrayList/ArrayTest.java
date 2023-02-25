@@ -17,6 +17,8 @@ public class ArrayTest {
         System.out.println("array12 = " + array12);
         System.out.println("array12.remove(3) = " + array12.remove(3));
         System.out.println("array12.get(7) = " + array12.get(7));
+        array12.clear();
+        System.out.println("array12.size() = " + array12.size());
 
 
     }
