@@ -11,7 +11,7 @@ public class FrequencyOfRepetitionOfWords {
         Map<String, Integer> frequencyOfWords = new HashMap<>();
         int value = 1;
         try {
-            File file = new File("src/words.txt");
+            File file = new File("src/main/java/words.txt");
             System.out.println("file.exists() = " + file.exists());
             InputStream fis = new FileInputStream(file);
             Scanner scanner = new Scanner(fis);
