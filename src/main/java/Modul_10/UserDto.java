@@ -8,6 +8,11 @@ public class UserDto implements Serializable {
     private String name;
     private int age;
 
+    public UserDto(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
     public String getName() {
         return name;
     }

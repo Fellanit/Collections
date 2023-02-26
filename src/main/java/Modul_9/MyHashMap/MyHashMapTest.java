@@ -15,5 +15,6 @@ public class MyHashMapTest {
         workerSalary.display();
         System.out.println("workerSalary.remove(\"Maxim\") = " + workerSalary.remove("Maxim"));
         workerSalary.display();
+        System.out.println("workerSalary.size() = " + workerSalary.size());
     }
 }

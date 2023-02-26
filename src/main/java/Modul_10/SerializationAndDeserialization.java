@@ -10,29 +10,22 @@ import java.util.List;
 import java.util.Scanner;
 
 public class SerializationAndDeserialization {
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
-        List<UserDto> array = new ArrayList<>();
-        UserDto userDto = new UserDto();
-        InputStream fis = new FileInputStream("src/main/java/file.txt");
-        Scanner scanner = new Scanner(fis);
-        scanner.nextLine();
-        while (scanner.hasNext()) {
-            String sourceString = scanner.nextLine();
-            String[] strArray = sourceString.split(" ");
-            String userName = strArray[0];
-            int userAge = Integer.parseInt(strArray[1]);
-
-            userDto.setName(userName);
-            userDto.setAge(userAge);
-            array.add(userDto);
+    public static void main(String[] args) throws IOException {
+            List<UserDto> users = new ArrayList<>();
+            Scanner scanner = new Scanner(new FileInputStream("src/main/java/file.txt"));
+            scanner.nextLine();
+            while (scanner.hasNext()) {
+                String sourceString = scanner.nextLine();
+                String[] strArray = sourceString.split(" ");
+                users.add(new UserDto(strArray[0], Integer.parseInt(strArray[1])));
+            }
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            String toJson = gson.toJson(userDto);
-            System.out.println(toJson);
-            OutputStream fos = new FileOutputStream("users.json",true);
-            fos.write(toJson.getBytes());
+            FileWriter writer = new FileWriter("users.json");
+            gson.toJson(users, writer);
+            writer.close();
         }
-    }
-}
+        }
+
 
 
 

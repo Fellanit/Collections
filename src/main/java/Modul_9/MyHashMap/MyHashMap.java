@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class MyHashMap<K, V> {
     private Node<K, V>[] HashMap;
-    private int size = 0;
+   private int size = 0;
     private int capacity = 16;
 
 
@@ -28,7 +28,6 @@ public class MyHashMap<K, V> {
 
         }
 
-
         @Override
         public int hashCode() {
             int hash = 31;
@@ -36,6 +35,10 @@ public class MyHashMap<K, V> {
             hash = hash * 17 + value.hashCode();
             return hash;
         }
+    }
+
+    public int size() {
+        return size;
     }
 
     public void put(K key, V value) {
@@ -66,6 +69,7 @@ public class MyHashMap<K, V> {
             }
             prev.next = newHashMap;
         }
+        size++;
     }
 
     public V get(K key) {
@@ -97,6 +101,7 @@ public class MyHashMap<K, V> {
                 if (current.key.equals(removeKey)) {
                     if (prev == null) {
                         HashMap[hash] = HashMap[hash].next;
+                        size--;
                         return true;
                     }
                 }
