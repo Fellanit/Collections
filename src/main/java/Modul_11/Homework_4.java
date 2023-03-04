@@ -3,6 +3,8 @@ package Modul_11;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static java.lang.Math.pow;
+
 
 public class Homework_4 {
     
@@ -13,7 +15,7 @@ public class Homework_4 {
         public static void main(String[] args) {
             long a = 25214903917L;
             long c = 11L;
-            long m = 2^48L;
+            long m = (long) Math.pow(2,48);
 
             Stream<Long> randomStream = Homework_4.generate(a, c, m, 1L);
             randomStream.limit(10).forEach(System.out::println);

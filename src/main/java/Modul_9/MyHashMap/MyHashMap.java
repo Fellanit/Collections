@@ -1,40 +1,34 @@
 package Modul_9.MyHashMap;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class MyHashMap<K, V> {
     private Node<K, V>[] hashMap;
-    private int size = 0;
-    private Node<K, V> current;
-    private int capacity = 16;
-
+    private int size;
+    private final int DEFAULT_CAPACITY = 16;
 
     public MyHashMap() {
-        hashMap = new Node[capacity];
+        hashMap = new Node[DEFAULT_CAPACITY];
         size = 0;
-
     }
 
-    private class Node<K, V> {
-
-        private int hash;
-        private K key;
+    private static class Node<K, V> {
+        private final int hash;
+        private final K key;
         private V value;
         Node<K, V> next;
 
-        public Node(K key, V value, Node<K, V> next) {
+        public Node(int hash,K key, V value, Node<K, V> next) {
+            this.hash = hash;
             this.key = key;
             this.value = value;
             this.next = next;
-
         }
 
         @Override
         public int hashCode() {
-            int hash = 31;
-            hash = hash * 17 + key.hashCode();
-            hash = hash * 17 + value.hashCode();
-            return hash;
+            return Objects.hash(key);
         }
     }
 
@@ -43,66 +37,101 @@ public class MyHashMap<K, V> {
     }
 
     public void put(K key, V value){
+        if (size == hashMap.length) {
+            resize();
+        }
+        putValue(key, value);
+        size++;
+    }
 
-        if (size == 0) {
-            current = new Node<>(key, value, null);
-            size++;
+    private void putValue(K key, V value) {
+        Node<K, V> node = new Node<>(hashCode(key), key, value, null);
+        int index = Math.abs(node.hash % hashMap.length);
+        Node<K, V> tmpNode = hashMap[index];
+        if (tmpNode == null) {
+            hashMap[index] = node;
         } else {
-            Node<K, V> temp = current;
-            for (int i = 1; i < size; i++) {
-                temp = temp.next;
+            while (tmpNode.next != null) {
+                if (tmpNode.key.equals(key)) {
+                    tmpNode.value = value;
+                    return;
+                }
+                tmpNode = tmpNode.next;
             }
-            temp.next = new Node<>(key, value, null);
-            size++;
+            if (tmpNode.key.equals(key)) {
+                tmpNode.value = value;
+            } else {
+                tmpNode.next = node;
+            }
         }
     }
 
+    private void resize() {
+        Node<K, V>[] newArrayNode = Arrays.copyOf(hashMap, hashMap.length);
+        hashMap = new Node[hashMap.length * 2];
+        for (Node<K, V> kvNode : newArrayNode) {
+            if (kvNode != null) {
+                putValue(kvNode.key, kvNode.value);
+            }
+        }
+    }
 
     public V get(K key) {
-        int hash = hash(key);
-        if (hashMap[hash] == null) {
-            return null;
-        } else {
-            Node<K, V> temp = hashMap[hash];
-            while (temp != null) {
-                if (temp.key.equals(key)) {
-                    return temp.value;
-                }
-                temp = temp.next;
+        int index = Math.abs(hashCode(key) % hashMap.length);
+        Node<K, V> tmpNode = hashMap[index];
+        V returnValue = tmpNode.value;;
+        while (tmpNode != null) {
+            if ((key == null) || (key != null && key.equals(tmpNode.key))) {
+                returnValue = tmpNode.value;
             }
-            return null;
+            tmpNode = tmpNode.next;
         }
-
+        return returnValue;
     }
 
-    public boolean remove(K removeKey) {
-        int hash = hash(removeKey);
-        if (hashMap[hash] == null) {
-            return false;
-        } else {
-            Node<K, V> prev = null;
-            Node<K, V> current = hashMap[hash];
-
-            while (current != null) {
-                if (current.key.equals(removeKey)) {
-                    if (prev == null) {
-                        hashMap[hash] = hashMap[hash].next;
+    public V remove(K key) {
+        Node<K, V> tmpNode = new Node<>(hashCode(key), key, null, null);
+        Node<K, V> previousNode, nextNode;
+        int index = Math.abs(tmpNode.hash % hashMap.length);
+        V result;
+        if (hashMap[index] != null) {
+            do {
+                previousNode = hashMap[index];
+                nextNode = hashMap[index].next;
+                if ((key == null && tmpNode.key == null) ||
+                        (previousNode.key != null && tmpNode.key != null
+                                && previousNode.key.equals(tmpNode.key))) {
+                    result = previousNode.value;
+                    hashMap[index] = nextNode;
+                    size--;
+                    return result;
+                }
+                if (nextNode != null && previousNode.key != null && tmpNode.key != null) {
+                    if (nextNode.key.equals(tmpNode.key)) {
+                        result = nextNode.value;
+                        previousNode.next = nextNode.next;
+                        hashMap[index] = previousNode;
                         size--;
-                        return true;
+                        return result;
                     }
                 }
-                prev = current;
-                current = current.next;
-            }
-            return false;
+            } while (nextNode != null);
         }
-
+        throw new RuntimeException("Value not found");
     }
 
+    public void clear() {
+        hashMap = new Node[DEFAULT_CAPACITY];
+        size = 0;
+    }
+
+    public int hashCode(K key) {
+        return Objects.hash(key);
+    }
     public void display() {
-        for (int i = 0; i < capacity; i++) {
+        for (int i = 0; i < DEFAULT_CAPACITY; i++) {
             if (hashMap[i] != null) {
-                Node<K, V> node = hashMap[i];
+                MyHashMap.Node<K, V> node = hashMap[i];
 
                 while (node != null) {
                     System.out.println("{" + node.key + " = " + node.value + "}" + " ");
@@ -112,23 +141,11 @@ public class MyHashMap<K, V> {
         }
     }
 
-    private int hash(Node<K, V> node) {
-        return node.hashCode() % hashMap.length;
-    }
-
-    private int hash(final K key) {
-        int hash = 31;
-        hash = hash * 17 + key.hashCode();
-        return hash % hashMap.length;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MyHashMap<?, ?> myHashMap = (MyHashMap<?, ?>) o;
-        return size == myHashMap.size && capacity == myHashMap.capacity && Arrays.equals(hashMap, myHashMap.hashMap);
+        return size == myHashMap.size && Arrays.equals(hashMap, myHashMap.hashMap);
     }
-
 }
-

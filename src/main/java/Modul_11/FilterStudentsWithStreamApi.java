@@ -9,10 +9,11 @@ import java.util.stream.Stream;
 
 public class FilterStudentsWithStreamApi {
     public static void main(String[] args) {
-        Stream<String> nameStream;
-        nameStream = Stream.of("1. Ivan", "2. Kristina", "3. OLeg", "4. Artem", "5. Peter", "6. Julia")
-                .filter(s -> (s.charAt(0) % 2) != 0);
-        List<String> oddNames = nameStream.collect(Collectors.toList());
-        System.out.println(oddNames);
+        List<String> names = List.of("Ivan", "Petro", "Fedir", "Andriy", "Bogdan");
+        String result = IntStream.range(0, names.size())
+                .filter(i -> i % 2 == 1)
+                .mapToObj(i -> i + ". " + names.get(i))
+                .collect(Collectors.joining(", "));
+        System.out.println("result = " + result);
     }
 }
