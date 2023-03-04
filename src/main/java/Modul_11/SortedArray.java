@@ -8,7 +8,7 @@ public class SortedArray {
     public static void main(String[] args) {
         Stream<String> nameStream;
         nameStream = Stream.of("Ivan", "Kristina", "OLeg", "Artem", "Peter", "Julia")
-                .map(name -> name.toUpperCase())
+                .map(String::toUpperCase)
                 .sorted();
         List<String> names = nameStream.collect(Collectors.toList());
         System.out.println(names);
