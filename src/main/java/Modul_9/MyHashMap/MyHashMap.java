@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class MyHashMap<K, V> {
     private Node<K, V>[] hashMap;
     private int size = 0;
-
+    private Node<K, V> current;
     private int capacity = 16;
 
 
@@ -42,51 +42,19 @@ public class MyHashMap<K, V> {
         return size;
     }
 
-    public void put(K key, V value) {
-        int hash = hash(key);
-        Node<K, V> newHashMap = new Node<K, V>(key, value, null);
+    public void put(K key, V value){
 
-        if (hashMap[hash] == null) {
-            hashMap[hash] = newHashMap;
-
+        if (size == 0) {
+            current = new Node<>(key, value, null);
+            size++;
         } else {
-            Node<K, V> prev = null;
-            Node<K, V> current = hashMap[hash];
-
-
-            if (size < hashMap.length) {
-
-                while (current != null) {
-                    if (current.key.equals(key)) {
-                        if (prev == null) {
-                            newHashMap.next = current.next;
-                            hashMap[hash] = newHashMap;
-                            return;
-                        } else {
-                            newHashMap.next = current.next;
-                            prev.next = newHashMap;
-                            return;
-                        }
-                    }
-                    size++;
-                    prev = current;
-                    prev.next = newHashMap;
-                    return;
-                }
-                prev.next = newHashMap;
-            } else {
-                Node<K,V>[] newMap = new Node[size * 2];
-                for (int i = 0; i < size/2; i++) {
-                    if(hashMap[i] == null){
-                        hashMap = newMap;
-                        put(key, value);
-                    }else {
-                        newMap[i] = hashMap[i];
-                    }
-                }
-                }
+            Node<K, V> temp = current;
+            for (int i = 1; i < size; i++) {
+                temp = temp.next;
             }
-size++;
+            temp.next = new Node<>(key, value, null);
+            size++;
+        }
     }
 
 
