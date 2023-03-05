@@ -7,10 +7,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class FizzBuzzOrFizzbuzz {
-
-    private final int n = 20;
-    public static volatile AtomicInteger digits = new AtomicInteger(1);
-    public BlockingQueue<String> queue = new LinkedBlockingQueue<>();
     public static void main(String[] args) throws InterruptedException {
         ExecutorService executorService = Executors.newScheduledThreadPool(4);
         ThreadServiceMethods threadServiceMethods = new ThreadServiceMethods();
