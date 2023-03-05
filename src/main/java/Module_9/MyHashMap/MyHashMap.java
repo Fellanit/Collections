@@ -1,4 +1,4 @@
-package Modul_9.MyHashMap;
+package Module_9.MyHashMap;
 
 import java.util.Arrays;
 import java.util.Objects;

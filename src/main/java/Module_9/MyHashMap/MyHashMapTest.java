@@ -1,4 +1,4 @@
-package Modul_9.MyHashMap;
+package Module_9.MyHashMap;
 
 public class MyHashMapTest {
     public static void main(String[] args) {

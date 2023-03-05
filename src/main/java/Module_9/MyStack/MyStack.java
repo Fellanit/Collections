@@ -1,4 +1,4 @@
-package Modul_9.MyStack;
+package Module_9.MyStack;
 
 import java.util.Arrays;
 import java.util.Objects;

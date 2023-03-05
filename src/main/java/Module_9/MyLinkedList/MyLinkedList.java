@@ -1,4 +1,4 @@
-package Modul_9.MyLinkedList;
+package Module_9.MyLinkedList;
 
 
 import java.util.Objects;

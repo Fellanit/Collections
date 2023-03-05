@@ -1,4 +1,4 @@
-package Modul_9.MyArrayList;
+package Module_9.MyArrayList;
 
 public class ArrayTest {
     public static void main(String[] args) {

@@ -1,11 +1,10 @@
-package Modul_10;
+package Module_10;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 

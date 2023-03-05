@@ -1,9 +1,6 @@
-package Modul_11;
+package Module_11;
 
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import static java.lang.Math.pow;
 
 
 public class Homework_4 {

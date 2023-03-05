@@ -1,4 +1,4 @@
-package Modul_9.MyArrayList;
+package Module_9.MyArrayList;
 
 import java.util.Objects;
 

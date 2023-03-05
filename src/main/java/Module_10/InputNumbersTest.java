@@ -1,4 +1,4 @@
-package Modul_10;
+package Module_10;
 
 import java.io.File;
 import java.io.FileInputStream;

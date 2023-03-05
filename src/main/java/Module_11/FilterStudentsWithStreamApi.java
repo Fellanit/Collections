@@ -1,11 +1,8 @@
-package Modul_11;
+package Module_11;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class FilterStudentsWithStreamApi {
     public static void main(String[] args) {

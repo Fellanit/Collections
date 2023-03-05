@@ -1,4 +1,4 @@
-package Modul_11;
+package Module_11;
 
 import java.util.Comparator;
 import java.util.List;

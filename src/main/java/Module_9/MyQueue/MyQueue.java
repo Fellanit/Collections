@@ -1,4 +1,4 @@
-package Modul_9.MyQueue;
+package Module_9.MyQueue;
 
 
 public class MyQueue<E> {
