@@ -22,8 +22,8 @@ import java.util.NoSuchElementException;
 
 public class HTTPUsersInteraction {
     private  static final Gson gson = new Gson();
-    /*Task1
-     * створення нового об'єкта*/
+
+//      створення нового об'єкта
     public static HttpResponse<String> createUser(String uri, User user) throws IOException, InterruptedException {
 
         HttpRequest request = HttpRequest.newBuilder()

@@ -17,8 +17,8 @@ public class HttpUrlTest {
 
     public static void main(String[] args) throws IOException, InterruptedException{
 
-        /*Task1
-         * створення нового об'єкта*/
+
+//          створення нового об'єкта
         {
             User user = gson.fromJson(new FileReader("src/main/resources/user.json"), User.class);
 
@@ -26,8 +26,8 @@ public class HttpUrlTest {
             System.out.println("createUser httpResponse.statusCode() = " + response.statusCode());
             System.out.println("createUser httpResponse.body() = " + response.body());
         }
-        /*Task1
-         * оновлення об'єкту */
+
+//          оновлення об'єкту
         {
             User modUser = gson.fromJson(new FileReader("src/main/resources/user.json"), User.class);
 
@@ -42,8 +42,8 @@ public class HttpUrlTest {
             System.out.println("updateUser id: "+userId+" httpResponse.body() = " + response.body());
         }
 
-        /*Task1
-         * видалення об'єкта */
+
+//          видалення об'єкта
         {
             int userId = 4;
 
